@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>The Work — Get New Customers Field Portfolio</title>
+<meta name="description" content="Client website builds by Get New Customers, shown as revision history: every project, every style pass, in order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --desk:#E9EFF7;
+    --ink:#152233;
+    --blue:#1E5DAB;
+    --blue-ink:#164A8A;
+    --gold:#F2B33D;
+    --gold-ink:#8A6400;
+    --wash:#F2F6FB;
+    --muted:#4E5E71;
+    --hairline:#C9D4E2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:var(--desk);
+    background-image:radial-gradient(rgba(30,93,171,.10) 1px, transparent 1px);
+    background-size:22px 22px;
+    color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+    padding:14px 8px 48px;
+  }
+  @media(min-width:760px){body{padding:40px 20px 80px}}
+  ::selection{background:var(--gold);color:var(--ink)}
+
+  .sheet{
+    max-width:1060px;margin:0 auto;background:var(--paper);
+    border:1px solid var(--hairline);
+    box-shadow:6px 6px 0 rgba(22,74,138,.14);
+  }
+  .pad{padding-left:20px;padding-right:20px}
+  @media(min-width:700px){.pad{padding-left:48px;padding-right:48px}}
+
+  .mk{
+    font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue-ink);font-variant-numeric:tabular-nums;
+  }
+  .mk--dim{color:var(--muted)}
+  .mk--gold{color:var(--gold-ink)}
+
+  .dochead{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    border-bottom:3px solid var(--ink);padding:14px 20px;
+  }
+  @media(min-width:700px){.dochead{padding:16px 48px}}
+
+  /* HERO */
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .hero>*{animation:rise .55s cubic-bezier(.16,1,.3,1) both}
+  .hero h1{animation-delay:.05s}
+  .hero .lead{animation-delay:.13s}
+  .hero .counts{animation-delay:.2s}
+  .hero{padding-top:36px;padding-bottom:36px;border-bottom:1px solid var(--hairline)}
+  @media(min-width:700px){.hero{padding-top:52px;padding-bottom:48px}}
+  .hero h1{
+    font-size:clamp(44px,11vw,104px);font-weight:900;line-height:.96;
+    letter-spacing:-.035em;
+  }
+  .hero h1 em{font-style:normal;color:var(--blue);position:relative;display:inline-block}
+  .hero h1 em svg{position:absolute;left:0;bottom:-.1em;width:100%;height:.22em;overflow:visible}
+  .hero .lead{margin-top:20px;max-width:62ch;color:var(--muted);font-size:clamp(15.5px,2.4vw,18px);line-height:1.7}
+  .counts{margin-top:28px;border-top:1px solid var(--hairline)}
+  .crow{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px solid var(--hairline)}
+  .crow span{font-size:13px;font-weight:600;color:var(--muted)}
+  .crow i{flex:1;border-bottom:2px dotted rgba(30,93,171,.45);transform:translateY(-4px)}
+  .crow b{font-size:clamp(20px,4.4vw,26px);font-weight:900;color:var(--blue);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* JOB sections */
+  .job{padding-top:0;padding-bottom:14px}
+  .jobhead{
+    display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 16px;
+    border-top:3px solid var(--ink);padding-top:16px;margin-bottom:6px;
+  }
+  .jobhead .no{
+    font-size:24px;font-weight:900;color:var(--gold-ink);
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;
+  }
+  .jobhead h2{
+    font-size:clamp(22px,5vw,32px);font-weight:900;letter-spacing:-.024em;line-height:1.1;
+  }
+  .jobhead .trade{
+    margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue-ink);border:1.5px solid var(--blue-ink);padding:4px 9px;white-space:nowrap;
+  }
+  .job .note{color:var(--muted);font-size:14.5px;max-width:66ch;line-height:1.65;margin-bottom:18px}
+
+  /* REV strip: the signature element */
+  .revstrip{
+    display:flex;gap:0;overflow-x:auto;padding-bottom:22px;margin-bottom:8px;
+    scroll-snap-type:x proximity;
+  }
+  .rev{
+    flex:0 0 auto;width:min(300px,78vw);scroll-snap-align:start;
+    padding-right:26px;position:relative;
+  }
+  .rev:not(:last-child)::after{
+    content:"";position:absolute;right:6px;top:82px;width:16px;height:2px;
+    background:var(--blue-ink);opacity:.5;
+  }
+  .rev a{display:block;text-decoration:none;color:inherit;outline-offset:4px}
+  .rev a:focus-visible{outline:3px solid var(--blue)}
+  .shot{
+    display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;
+    border:1.5px solid var(--ink);background:var(--wash);
+    transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s cubic-bezier(.16,1,.3,1);
+  }
+  .rev a:hover .shot{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(22,74,138,.28)}
+  .revcap{display:flex;align-items:center;gap:8px;margin-top:9px}
+  .delta{flex:none;width:17px;height:15px}
+  .revcap .rl{font-size:10.5px;font-weight:900;letter-spacing:.1em;color:var(--gold-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .revcap .rn{font-size:12.5px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rev .u{display:block;margin-top:3px;font-size:10.5px;color:var(--blue);font-weight:600;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* wash band alternation */
+  .band{background:var(--wash);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+  .band .jobhead{border-top:none;padding-top:26px}
+
+  /* FOOT */
+  .foot{border-top:3px solid var(--ink);background:var(--wash);padding-top:30px;padding-bottom:34px}
+  .foot p{color:var(--muted);font-size:14px;max-width:62ch}
+  .foot .row{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px}
+  .foot a{color:var(--blue-ink);font-weight:800;font-size:13px;text-decoration:none;border-bottom:2px solid var(--gold)}
+  .foot a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  .byline{
+    margin-top:24px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue-ink);display:flex;align-items:center;gap:8px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .hero>*{animation:none !important}
+    .shot{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="dochead">
+    <span class="mk">Get New Customers · Field Portfolio</span>
+    <span class="mk mk--dim">Revision Log · Central PA</span>
+  </div>
+
+  <header class="hero pad">
+    <h1>The work,<br><em>rev by rev.<svg viewBox="0 0 300 14" aria-hidden="true" preserveAspectRatio="none"><path d="M3 9 C60 5.4 132 4.2 187 6.1 C231 7.6 269 6.8 297 5.2" fill="none" stroke="#F2B33D" stroke-width="7" stroke-linecap="round" opacity=".9"/></svg></em></h1>
+    <p class="lead">Every website below is real and live. Each project is shown the way a plan set shows its history: first issue, then every revision after it, in order. Click any figure to open the build.</p>
+    <div class="counts">
+      <div class="crow"><span>client and brand projects on the board</span><i></i><b>11</b></div>
+      <div class="crow"><span>live builds, each its own link</span><i></i><b>42</b></div>
+      <div class="crow"><span>templates used, ever</span><i></i><b>0</b></div>
+    </div>
+  </header>
+
+  <!-- JOBS injected below by build script -->
+  <section class="job pad">
+    <div class="jobhead"><span class="no">01</span><h2>We Them Bullies</h2><span class="trade">KENNEL · XL BULLIES</span></div>
+    <p class="note">Seven passes on one kennel brand, from first issue to a working shop. The cinematic and scroll passes were style experiments; the shop pass added commerce.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://wethembullies.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies.jpg" alt="Screenshot: We Them Bullies, first issue" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">first issue</span></figcaption>
+          <span class="u">wethembullies.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://wethembullies-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies-cinema.jpg" alt="Screenshot: We Them Bullies, cinematic pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">cinematic pass</span></figcaption>
+          <span class="u">wethembullies-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://wethembullies-real.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies-real.jpg" alt="Screenshot: We Them Bullies, real-content rebuild" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">3</text></svg><span class="rl">REV C</span><span class="rn">real-content rebuild</span></figcaption>
+          <span class="u">wethembullies-real.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://wethembullies-real-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies-real-cinema.jpg" alt="Screenshot: We Them Bullies, real content, cinematic" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">4</text></svg><span class="rl">REV D</span><span class="rn">real content, cinematic</span></figcaption>
+          <span class="u">wethembullies-real-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://wethembullies-scroll.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies-scroll.jpg" alt="Screenshot: We Them Bullies, scroll-scrub pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">5</text></svg><span class="rl">REV E</span><span class="rn">scroll-scrub pass</span></figcaption>
+          <span class="u">wethembullies-scroll.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://wethembullies-shop.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies-shop.jpg" alt="Screenshot: We Them Bullies, shop build" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">6</text></svg><span class="rl">REV F</span><span class="rn">shop build</span></figcaption>
+          <span class="u">wethembullies-shop.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://wethembullies-versions.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/wethembullies-versions.jpg" alt="Screenshot: We Them Bullies, versions index" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">7</text></svg><span class="rl">REV G</span><span class="rn">versions index</span></figcaption>
+          <span class="u">wethembullies-versions.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad band">
+    <div class="jobhead"><span class="no">02</span><h2>Blackwood Kennels</h2><span class="trade">KENNEL · FIRST CINEMATIC-SITE RUN</span></div>
+    <p class="note">First run of the cinematic-site system on a kennel brand. The versions page keeps the whole trail public.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://blackwood-kennels.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/blackwood-kennels.jpg" alt="Screenshot: Blackwood Kennels, first issue" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">first issue</span></figcaption>
+          <span class="u">blackwood-kennels.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://blackwood-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/blackwood-cinema.jpg" alt="Screenshot: Blackwood Kennels, cinematic pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">cinematic pass</span></figcaption>
+          <span class="u">blackwood-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://blackwood-versions.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/blackwood-versions.jpg" alt="Screenshot: Blackwood Kennels, versions index" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">3</text></svg><span class="rl">REV C</span><span class="rn">versions index</span></figcaption>
+          <span class="u">blackwood-versions.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad">
+    <div class="jobhead"><span class="no">03</span><h2>Lucky&#x27;s Lawn Care</h2><span class="trade">LAWN CARE</span></div>
+    <p class="note">Single-issue build for a working lawn crew: fast, phone-first, call button always in reach.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://luckys-lawn-care.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/luckys-lawn-care.jpg" alt="Screenshot: Lucky&#x27;s Lawn Care, live site" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">live site</span></figcaption>
+          <span class="u">luckys-lawn-care.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad band">
+    <div class="jobhead"><span class="no">04</span><h2>Coronado Landscaping</h2><span class="trade">LANDSCAPING · EN/ES</span></div>
+    <p class="note">Real business, bilingual build. Three revisions of mine sit on top of the original baseline site, which stays untouched.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://coronado-landscaping-v2.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/coronado-landscaping-v2.jpg" alt="Screenshot: Coronado Landscaping, rebuild" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">rebuild</span></figcaption>
+          <span class="u">coronado-landscaping-v2.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://coronado-landscaping-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/coronado-landscaping-cinema.jpg" alt="Screenshot: Coronado Landscaping, cinematic pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">cinematic pass</span></figcaption>
+          <span class="u">coronado-landscaping-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://coronado-landscaping-scroll.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/coronado-landscaping-scroll.jpg" alt="Screenshot: Coronado Landscaping, scroll-scrub pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">3</text></svg><span class="rl">REV C</span><span class="rn">scroll-scrub pass</span></figcaption>
+          <span class="u">coronado-landscaping-scroll.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://coronado-versions.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/coronado-versions.jpg" alt="Screenshot: Coronado Landscaping, versions index" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">4</text></svg><span class="rl">REV D</span><span class="rn">versions index</span></figcaption>
+          <span class="u">coronado-versions.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad">
+    <div class="jobhead"><span class="no">05</span><h2>Signature Painting</h2><span class="trade">PAINTING &amp; POWER WASHING</span></div>
+    <p class="note">Two issues for a painting outfit: a clean first site, then a fully animated second pass.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://signature-painting.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/signature-painting.jpg" alt="Screenshot: Signature Painting, first issue" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">first issue</span></figcaption>
+          <span class="u">signature-painting.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://signature-painting-v2.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/signature-painting-v2.jpg" alt="Screenshot: Signature Painting, animated rebuild" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">animated rebuild</span></figcaption>
+          <span class="u">signature-painting-v2.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad band">
+    <div class="jobhead"><span class="no">06</span><h2>Level 5 Drywall Repair</h2><span class="trade">DRYWALL</span></div>
+    <p class="note">Four passes on a drywall repair brand, ending in a scroll-driven build and a public versions trail.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://level5-drywall-repair.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/level5-drywall-repair.jpg" alt="Screenshot: Level 5 Drywall Repair, first issue" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">first issue</span></figcaption>
+          <span class="u">level5-drywall-repair.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://level5-drywall-repair-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/level5-drywall-repair-cinema.jpg" alt="Screenshot: Level 5 Drywall Repair, cinematic pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">cinematic pass</span></figcaption>
+          <span class="u">level5-drywall-repair-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://level5-drywall-repair-scroll.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/level5-drywall-repair-scroll.jpg" alt="Screenshot: Level 5 Drywall Repair, scroll-scrub pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">3</text></svg><span class="rl">REV C</span><span class="rn">scroll-scrub pass</span></figcaption>
+          <span class="u">level5-drywall-repair-scroll.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://level5-drywall-versions.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/level5-drywall-versions.jpg" alt="Screenshot: Level 5 Drywall Repair, versions index" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">4</text></svg><span class="rl">REV D</span><span class="rn">versions index</span></figcaption>
+          <span class="u">level5-drywall-versions.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad">
+    <div class="jobhead"><span class="no">07</span><h2>Family First Dental</h2><span class="trade">DENTAL · HAND-BUILT</span></div>
+    <p class="note">Hand-built practice site plus two scroll-driven style studies on the same subject.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://family-first-dental-demo.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/family-first-dental-demo.jpg" alt="Screenshot: Family First Dental, first issue" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">first issue</span></figcaption>
+          <span class="u">family-first-dental-demo.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://family-first-dental-mu.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/family-first-dental-mu.jpg" alt="Screenshot: Family First Dental, main build" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">main build</span></figcaption>
+          <span class="u">family-first-dental-mu.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://dental-clinic-scroll.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/dental-clinic-scroll.jpg" alt="Screenshot: Family First Dental, clinic scroll study" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">3</text></svg><span class="rl">REV C</span><span class="rn">clinic scroll study</span></figcaption>
+          <span class="u">dental-clinic-scroll.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://dental-smile-scroll.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/dental-smile-scroll.jpg" alt="Screenshot: Family First Dental, smile scroll study" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">4</text></svg><span class="rl">REV D</span><span class="rn">smile scroll study</span></figcaption>
+          <span class="u">dental-smile-scroll.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad band">
+    <div class="jobhead"><span class="no">08</span><h2>Client Offer Sheets</h2><span class="trade">PARTNERSHIP PROPOSALS</span></div>
+    <p class="note">One-page offer documents designed like the trades read them: a printed estimate and a plan sheet.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://amulektwo.github.io/client-offers/keith/" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gh-client-offers-keith.jpg" alt="Screenshot: Client Offer Sheets, estimate-sheet offer" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">estimate-sheet offer</span></figcaption>
+          <span class="u">amulektwo.github.io/client-offers/keith/</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://amulektwo.github.io/client-offers/trevor/" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gh-client-offers-trevor.jpg" alt="Screenshot: Client Offer Sheets, plan-sheet offer" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">plan-sheet offer</span></figcaption>
+          <span class="u">amulektwo.github.io/client-offers/trevor/</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad">
+    <div class="jobhead"><span class="no">09</span><h2>Get New Customers</h2><span class="trade">AGENCY BRAND · OWN SITE</span></div>
+    <p class="note">The agency&#x27;s own face, iterated hardest of all: twelve public passes from first demo to the current investor-grade build.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://getnewcustomers.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/getnewcustomers.jpg" alt="Screenshot: Get New Customers, first issue" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">first issue</span></figcaption>
+          <span class="u">getnewcustomers.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://get-new-customers.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/get-new-customers.jpg" alt="Screenshot: Get New Customers, early alternate" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">early alternate</span></figcaption>
+          <span class="u">get-new-customers.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://getnewcustomers-demo.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/getnewcustomers-demo.jpg" alt="Screenshot: Get New Customers, demo pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">3</text></svg><span class="rl">REV C</span><span class="rn">demo pass</span></figcaption>
+          <span class="u">getnewcustomers-demo.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://getnewcustomers-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/getnewcustomers-cinema.jpg" alt="Screenshot: Get New Customers, cinematic pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">4</text></svg><span class="rl">REV D</span><span class="rn">cinematic pass</span></figcaption>
+          <span class="u">getnewcustomers-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://getnewcustomers-versions.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/getnewcustomers-versions.jpg" alt="Screenshot: Get New Customers, versions index" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">5</text></svg><span class="rl">REV E</span><span class="rn">versions index</span></figcaption>
+          <span class="u">getnewcustomers-versions.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://gnc-scroll.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gnc-scroll.jpg" alt="Screenshot: Get New Customers, scroll-scrub pass" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">6</text></svg><span class="rl">REV F</span><span class="rn">scroll-scrub pass</span></figcaption>
+          <span class="u">gnc-scroll.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://gnc-showcase-cinema.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gnc-showcase-cinema.jpg" alt="Screenshot: Get New Customers, showcase: cinema" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">7</text></svg><span class="rl">REV G</span><span class="rn">showcase: cinema</span></figcaption>
+          <span class="u">gnc-showcase-cinema.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://gnc-showcase-atelier.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gnc-showcase-atelier.jpg" alt="Screenshot: Get New Customers, showcase: atelier" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">8</text></svg><span class="rl">REV H</span><span class="rn">showcase: atelier</span></figcaption>
+          <span class="u">gnc-showcase-atelier.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://gnc-showcase-specimen.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gnc-showcase-specimen.jpg" alt="Screenshot: Get New Customers, showcase: specimen" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">9</text></svg><span class="rl">REV I</span><span class="rn">showcase: specimen</span></figcaption>
+          <span class="u">gnc-showcase-specimen.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://gnc-showcase-hub.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gnc-showcase-hub.jpg" alt="Screenshot: Get New Customers, showcase hub" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">10</text></svg><span class="rl">REV J</span><span class="rn">showcase hub</span></figcaption>
+          <span class="u">gnc-showcase-hub.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://getnewcustomers-future.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/getnewcustomers-future.jpg" alt="Screenshot: Get New Customers, warm cinematic · canonical" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">11</text></svg><span class="rl">REV K</span><span class="rn">warm cinematic · canonical</span></figcaption>
+          <span class="u">getnewcustomers-future.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://getnewcustomers-landing.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/getnewcustomers-landing.jpg" alt="Screenshot: Get New Customers, production landing" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">12</text></svg><span class="rl">REV L</span><span class="rn">production landing</span></figcaption>
+          <span class="u">getnewcustomers-landing.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad band">
+    <div class="jobhead"><span class="no">10</span><h2>Motion Lab</h2><span class="trade">R&amp;D</span></div>
+    <p class="note">Standalone study: an Apple-style scroll-controlled canvas hero, kept as a working demo.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://scroll-cinema-demo.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/scroll-cinema-demo.jpg" alt="Screenshot: Motion Lab, scroll-cinema demo" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">scroll-cinema demo</span></figcaption>
+          <span class="u">scroll-cinema-demo.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+  <section class="job pad">
+    <div class="jobhead"><span class="no">11</span><h2>GNC Command</h2><span class="trade">OPERATIONS</span></div>
+    <p class="note">The dashboards that run the agency itself: pipeline command and a 14-day sprint board.</p>
+    <div class="revstrip">
+      <figure class="rev">
+        <a href="https://gnc-command-dashboard.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/gnc-command-dashboard.jpg" alt="Screenshot: GNC Command, command dashboard" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">1</text></svg><span class="rl">REV A</span><span class="rn">command dashboard</span></figcaption>
+          <span class="u">gnc-command-dashboard.vercel.app</span>
+        </a>
+      </figure>
+      <figure class="rev">
+        <a href="https://operation-freedom-three.vercel.app" target="_blank" rel="noopener">
+          <img class="shot" src="assets/operation-freedom-three.jpg" alt="Screenshot: GNC Command, sprint board" loading="lazy" width="640" height="400">
+          <figcaption class="revcap"><svg class="delta" viewBox="0 0 17 15" aria-hidden="true"><path d="M8.5 1.5 L15.6 13.3 L1.4 13.3 Z" fill="none" stroke="#8A6400" stroke-width="1.8" stroke-linejoin="round"/><text x="8.5" y="12" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" font-weight="900" fill="#8A6400">2</text></svg><span class="rl">REV B</span><span class="rn">sprint board</span></figcaption>
+          <span class="u">operation-freedom-three.vercel.app</span>
+        </a>
+      </figure>
+    </div>
+  </section>
+
+
+  <footer class="foot pad">
+    <p>Every link opens the live deployment, not a mockup. Older revisions stay up on purpose: the point of this board is the distance between the first issue and the latest one.</p>
+    <div class="row">
+      <a href="https://amulektwo.github.io/zion-registry/">Command center registry</a>
+      <a href="https://agency-showcase-rho.vercel.app">Agency showcase</a>
+      <a href="https://portfolio-evolution.vercel.app">Earlier portfolio page</a>
+    </div>
+    <p class="byline"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.4 8.2 C2.2 4.9 4.8 2.2 8.1 2.3 C10.3 2.4 12.2 3.6 13.2 5.4" stroke="#1E5DAB" stroke-width="2" stroke-linecap="round"/><path d="M13.6 8 C13.7 11.3 11.2 13.8 8 13.7 C5.7 13.6 3.8 12.4 2.8 10.7" stroke="#F2B33D" stroke-width="2" stroke-linecap="round"/></svg>Prepared by Get New Customers</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
