@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Operation Alignment = Freedom</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9728;&#65039;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F8F4EC; --ink: #2C2416; --muted: #74685A;
+  --gold: #B8952F; --gold-text: #86661A;
+  --surface: #EDE8DE; --border: #D4CCBC;
+  --danger: #8A3A2A; --check: #2C2416; --grain: 0.055;
+  --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A0A0F; --ink: #E8E0D0; --muted: #8F887C;
+    --gold: #C9A84C; --gold-text: #C9A84C;
+    --surface: #121218; --border: #2A2A32;
+    --danger: #C0735F; --check: #0A0A0F; --grain: 0.03;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A0A0F; --ink: #E8E0D0; --muted: #8F887C;
+  --gold: #C9A84C; --gold-text: #C9A84C;
+  --surface: #121218; --border: #2A2A32;
+  --danger: #C0735F; --check: #0A0A0F; --grain: 0.03;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0; min-height: 100%;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  opacity: var(--grain);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.36  0 0 0 0 0.28  0 0 0 0 0.14  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.page { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 36px 22px 72px; }
+button { font: inherit; color: inherit; }
+button:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.header { margin-bottom: 30px; }
+.eyebrow { font-family: var(--serif); font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-text); margin: 0 0 4px; }
+.title { font-family: var(--serif); font-size: 40px; font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; margin: 0; }
+.date { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--muted); margin: 8px 0 0; }
+
+.scripture { border-left: 2px solid var(--gold); padding: 4px 0 4px 20px; margin: 0 0 44px; }
+.scripture blockquote { margin: 0; }
+.verse { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 20px; line-height: 1.5; margin: 0; }
+.cite { display: block; font-family: var(--serif); font-style: normal; font-weight: 600; font-size: 15px; letter-spacing: 0.02em; color: var(--gold-text); margin-top: 8px; }
+.scripture-rule { border: 0; height: 1px; background: var(--border); margin: 20px 0; width: 56px; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: 0.01em; color: var(--gold-text); margin: 0 0 6px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+.streak { padding-top: 14px; }
+.streak-figure { display: flex; align-items: baseline; gap: 12px; }
+.streak-num { font-family: var(--serif); font-size: 64px; font-weight: 600; line-height: 1; color: var(--gold); font-variant-numeric: lining-nums; }
+.streak-unit { font-size: 16px; color: var(--muted); }
+.streak-meta { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+.streak-meta span { display: block; }
+.btn { margin-top: 18px; background: transparent; border: 1px solid var(--gold); color: var(--gold-text); font-size: 15px; font-weight: 500; padding: 10px 20px; border-radius: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.btn:active { background: var(--surface); }
+.btn.danger { border-color: var(--danger); color: var(--danger); }
+.btn.armed { background: var(--danger); color: var(--bg); }
+
+.row { display: flex; align-items: center; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--border); padding: 15px 2px; cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; }
+.row:last-child { border-bottom: 0; }
+.box { width: 24px; height: 24px; flex-shrink: 0; margin-right: 16px; border: 1.5px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; transition: background-color .15s, border-color .15s; }
+.box svg { width: 14px; height: 14px; opacity: 0; transition: opacity .15s; }
+.box svg path { stroke: var(--check); }
+.row[aria-pressed="true"] .box { background: var(--gold); border-color: var(--gold); }
+.row[aria-pressed="true"] .box svg { opacity: 1; }
+.row-label { font-size: 17px; }
+.row[aria-pressed="true"] .row-label { color: var(--muted); }
+
+.unit-num { font-family: var(--serif); font-size: 18px; font-weight: 600; width: 30px; flex-shrink: 0; color: var(--muted); font-variant-numeric: lining-nums tabular-nums; }
+.unit-name { flex: 1; font-size: 16px; }
+.unit-mark { width: 16px; height: 16px; flex-shrink: 0; margin-left: 12px; opacity: 0; transition: opacity .15s; }
+.unit-mark path { stroke: var(--gold); }
+.row.unit[aria-pressed="true"] .unit-num { color: var(--gold-text); }
+.row.unit[aria-pressed="true"] .unit-name { color: var(--muted); }
+.row.unit[aria-pressed="true"] .unit-mark { opacity: 1; }
+.study-count { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
+
+.field { display: block; width: 100%; margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; color: var(--ink); resize: none; overflow: hidden; transition: border-color .15s; }
+.field:focus { outline: none; border-color: var(--gold); }
+.field::placeholder { color: var(--muted); opacity: 1; }
+.field.one-thing { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 18px; line-height: 1.45; padding: 14px 16px; min-height: 76px; }
+.field.reflection { font-family: var(--sans); font-size: 14px; line-height: 1.6; padding: 12px 14px; min-height: 104px; }
+.saved { font-size: 13px; color: var(--gold-text); margin: 8px 0 0; min-height: 1.3em; opacity: 0; transition: opacity .3s; }
+.saved.show { opacity: 1; }
+
+.day { display: flex; align-items: center; padding: 11px 2px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.day:last-child { border-bottom: 0; }
+.day-label { width: 96px; flex-shrink: 0; color: var(--muted); }
+.day.today .day-label { color: var(--ink); font-weight: 600; }
+.dots { display: flex; gap: 7px; flex: 1; }
+.dot { width: 11px; height: 11px; border-radius: 2px; background: var(--border); }
+.dot.on { background: var(--gold); }
+.day-score { width: 36px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.legend { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+.notice { font-size: 13px; color: var(--danger); border: 1px solid var(--danger); border-radius: 3px; padding: 10px 12px; margin: 0 0 28px; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="page" id="app" aria-live="polite">
+  <p class="date">Opening the record…</p>
+</main>
+<script>
+(function () {
+  "use strict";
+  var KEY = "oaf";
+  var DAILY = [
+    { key: "prayer", label: "Prayer" },
+    { key: "scripture", label: "Scripture study" },
+    { key: "exercise", label: "Exercise" },
+    { key: "noVape", label: "No vaping today" }
+  ];
+  var UNITS = [
+    "The Sequential Law", "External Before Internal Disciplines",
+    "Making and Keeping Promises", "General and Personal Commandments",
+    "Guilt as Divine Instrument", "Repentance as Change of Mind",
+    "Educating the Conscience", "Principles vs Practices", "The One Thing",
+    "Yoking Up", "The Common Denominator", "Eight Signs of Progress",
+    "Spirit Over Dramatic Revelation"
+  ];
+  var WEEKDAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var CHECK_SVG = '<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7.5L6 10.5L11 4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var MARK_SVG = '<svg class="unit-mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function keyOf(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function todayKey() { return keyOf(new Date()); }
+  function parseKey(k) { var p = k.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function formatKey(k) { var d = parseKey(k); return WEEKDAYS[d.getDay()] + " " + MONTHS[d.getMonth()] + " " + d.getDate(); }
+  function daysBetween(a, b) { return Math.round((parseKey(b) - parseKey(a)) / 86400000); }
+  function recentKeys(n) {
+    var out = [];
+    for (var i = 0; i < n; i++) { var d = new Date(); d.setHours(12,0,0,0); d.setDate(d.getDate() - i); out.push(keyOf(d)); }
+    return out;
+  }
+  function esc(s) { return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  var state = { streak: { startDate: null, best: 0 }, ot: "", study: {}, refs: {}, h: {} };
+  var storageWorks = true, resetArmed = false, resetTimer = null, renderedDay = todayKey();
+
+  function probeStorage() {
+    try { localStorage.setItem(KEY + "-probe", "1"); localStorage.removeItem(KEY + "-probe"); return true; }
+    catch (e) { return false; }
+  }
+  function load() {
+    storageWorks = probeStorage();
+    if (!storageWorks) return;
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var p = JSON.parse(raw);
+      if (!p || typeof p !== "object") return;
+      if (p.streak && typeof p.streak === "object") {
+        state.streak.startDate = typeof p.streak.startDate === "string" ? p.streak.startDate : null;
+        state.streak.best = Number(p.streak.best) || 0;
+      }
+      state.ot = typeof p.ot === "string" ? p.ot : "";
+      state.study = p.study && typeof p.study === "object" ? p.study : {};
+      state.h = p.h && typeof p.h === "object" ? p.h : {};
+      state.refs = p.refs && typeof p.refs === "object" ? p.refs : {};
+      if (typeof p.ref === "string" && p.ref && !p.refs) state.refs[todayKey()] = p.ref;
+    } catch (e) {}
+  }
+  function save() {
+    if (!storageWorks) return false;
+    try {
+      localStorage.setItem(KEY, JSON.stringify({
+        streak: state.streak, ot: state.ot, study: state.study,
+        ref: state.refs[todayKey()] || "", refs: state.refs, h: state.h
+      }));
+      return true;
+    } catch (e) { storageWorks = false; render(); return false; }
+  }
+  function currentStreak() {
+    if (!state.streak.startDate) return 0;
+    return Math.max(0, daysBetween(state.streak.startDate, todayKey()));
+  }
+  function todayChecks() {
+    var t = todayKey();
+    if (!state.h[t] || typeof state.h[t] !== "object") state.h[t] = {};
+    return state.h[t];
+  }
+
+  var app = document.getElementById("app");
+
+  function render() {
+    var t = todayKey(); renderedDay = t;
+    var streak = currentStreak();
+    var checks = state.h[t] || {};
+    var active = document.activeElement;
+    var focusId = active && active.getAttribute ? active.getAttribute("data-id") : null;
+    var h = [];
+
+    h.push('<header class="header"><p class="eyebrow">Operation</p><h1 class="title">Alignment = Freedom</h1><p class="date">' + formatKey(t) + '</p></header>');
+    if (!storageWorks) h.push('<p class="notice" role="alert">This browser is not saving entries. Anything recorded here will be lost when the page closes.</p>');
+
+    h.push('<section class="scripture" aria-label="Governing scriptures">');
+    h.push('<blockquote><p class="verse">Let us hear the conclusion of the whole matter: Fear God, and keep his commandments: for this is the whole duty of man. For God shall bring every work into judgment, with every secret thing, whether it be good, or whether it be evil.</p><cite class="cite">Ecclesiastes 12:13–14</cite></blockquote>');
+    h.push('<hr class="scripture-rule">');
+    h.push('<blockquote><p class="verse">The full soul loatheth an honeycomb; but to the hungry soul every bitter thing is sweet.</p><cite class="cite">Proverbs 27:7</cite></blockquote>');
+    h.push('</section>');
+
+    h.push('<section class="section"><h2 class="section-title">Freedom streak</h2><div class="streak">');
+    h.push('<div class="streak-figure"><span class="streak-num">' + streak + '</span><span class="streak-unit">' + (streak === 1 ? "day free" : "days free") + '</span></div>');
+    if (state.streak.startDate || state.streak.best > 0) {
+      h.push('<p class="streak-meta">');
+      if (state.streak.startDate) h.push('<span>Since ' + formatKey(state.streak.startDate) + '</span>');
+      if (state.streak.best > 0) h.push('<span>Longest: ' + state.streak.best + (state.streak.best === 1 ? " day" : " days") + '</span>');
+      h.push('</p>');
+    }
+    if (!state.streak.startDate) h.push('<button class="btn" type="button" data-action="begin" data-id="streak-btn">Begin freedom</button>');
+    else h.push('<button class="btn danger' + (resetArmed ? " armed" : "") + '" type="button" data-action="reset" data-id="streak-btn">' + (resetArmed ? "Tap again to reset" : "Reset") + '</button>');
+    h.push('</div></section>');
+
+    h.push('<section class="section"><h2 class="section-title">Today’s daily victory</h2>');
+    DAILY.forEach(function (item) {
+      var on = !!checks[item.key];
+      h.push('<button class="row" type="button" data-action="daily" data-key="' + item.key + '" data-id="daily-' + item.key + '" aria-pressed="' + on + '"><span class="box">' + CHECK_SVG + '</span><span class="row-label">' + item.label + '</span></button>');
+    });
+    h.push('</section>');
+
+    h.push('<section class="section"><h2 class="section-title"><label for="oneThing">The one thing</label></h2>');
+    h.push('<textarea class="field one-thing" id="oneThing" data-field="ot" rows="2" placeholder="The hardest commandment you face right now...">' + esc(state.ot) + '</textarea>');
+    h.push('<p class="saved" id="otSaved" aria-live="polite"></p></section>');
+
+    h.push('<section class="section"><h2 class="section-title"><label for="reflection">Reflection</label></h2>');
+    h.push('<textarea class="field reflection" id="reflection" data-field="ref" rows="4" placeholder="What did the Lord teach you today?">' + esc(state.refs[t] || "") + '</textarea>');
+    h.push('<p class="saved" id="refSaved" aria-live="polite"></p></section>');
+
+    var done = 0;
+    UNITS.forEach(function (_, i) { if (state.study[i + 1]) done++; });
+    h.push('<section class="section"><h2 class="section-title">The Divine Center — study progress</h2>');
+    UNITS.forEach(function (name, i) {
+      var id = i + 1, on = !!state.study[id];
+      h.push('<button class="row unit" type="button" data-action="study" data-unit="' + id + '" data-id="unit-' + id + '" aria-pressed="' + on + '"><span class="unit-num">' + id + '</span><span class="unit-name">' + name + '</span>' + MARK_SVG + '</button>');
+    });
+    h.push('<p class="study-count">' + done + ' of ' + UNITS.length + ' units studied</p></section>');
+
+    h.push('<section class="section"><h2 class="section-title">Recent days</h2>');
+    recentKeys(7).forEach(function (k, idx) {
+      var c = state.h[k] || {};
+      var count = DAILY.filter(function (d) { return c[d.key]; }).length;
+      var label = idx === 0 ? "Today" : formatKey(k);
+      h.push('<div class="day' + (idx === 0 ? " today" : "") + '" aria-label="' + label + ': ' + count + ' of 4"><span class="day-label">' + label + '</span><span class="dots" aria-hidden="true">');
+      DAILY.forEach(function (d) { h.push('<span class="dot' + (c[d.key] ? " on" : "") + '" title="' + d.label + '"></span>'); });
+      h.push('</span><span class="day-score">' + count + '/4</span></div>');
+    });
+    h.push('<p class="legend">Squares, left to right: prayer, scripture, exercise, no vaping.</p></section>');
+
+    app.innerHTML = h.join("");
+    autosize(document.getElementById("oneThing"));
+    autosize(document.getElementById("reflection"));
+    if (focusId) { var el = app.querySelector('[data-id="' + focusId + '"]'); if (el) el.focus({ preventScroll: true }); }
+  }
+
+  function autosize(el) { if (!el) return; el.style.height = "auto"; el.style.height = el.scrollHeight + 2 + "px"; }
+  function disarmReset() { resetArmed = false; if (resetTimer) { clearTimeout(resetTimer); resetTimer = null; } }
+
+  var actions = {
+    begin: function () { disarmReset(); state.streak.startDate = todayKey(); save(); render(); },
+    reset: function () {
+      if (!resetArmed) {
+        resetArmed = true;
+        resetTimer = setTimeout(function () { resetArmed = false; render(); }, 4000);
+        render(); return;
+      }
+      disarmReset();
+      var c = currentStreak();
+      if (c > state.streak.best) state.streak.best = c;
+      state.streak.startDate = null;
+      save(); render();
+    },
+    daily: function (el) { var k = el.getAttribute("data-key"), checks = todayChecks(); checks[k] = !checks[k]; save(); render(); },
+    study: function (el) { var id = el.getAttribute("data-unit"); state.study[id] = !state.study[id]; save(); render(); }
+  };
+
+  app.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-action]");
+    if (!el || !app.contains(el)) return;
+    var fn = actions[el.getAttribute("data-action")];
+    if (fn) fn(el);
+  });
+
+  var timers = {};
+  function flashSaved(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = storageWorks ? "Saved" : "Not saved";
+    el.classList.add("show");
+    clearTimeout(timers[id + "-fade"]);
+    timers[id + "-fade"] = setTimeout(function () { el.classList.remove("show"); }, 1500);
+  }
+
+  app.addEventListener("input", function (e) {
+    var el = e.target, field = el.getAttribute && el.getAttribute("data-field");
+    if (!field) return;
+    autosize(el);
+    if (field === "ot") {
+      state.ot = el.value;
+      clearTimeout(timers.ot);
+      timers.ot = setTimeout(function () { save(); flashSaved("otSaved"); }, 800);
+    } else if (field === "ref") {
+      var t = todayKey();
+      if (el.value) state.refs[t] = el.value; else delete state.refs[t];
+      clearTimeout(timers.ref);
+      timers.ref = setTimeout(function () { save(); flashSaved("refSaved"); }, 800);
+    }
+  });
+
+  function checkDay() { if (todayKey() !== renderedDay) { disarmReset(); render(); } }
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) checkDay(); });
+  window.addEventListener("focus", checkDay);
+  window.addEventListener("pagehide", save);
+
+  window.oaf = { state: function () { return JSON.parse(JSON.stringify(state)); }, render: render, save: save };
+
+  load();
+  render();
+})();
+</script>
+</body>
+</html>
